@@ -161,7 +161,7 @@ document.getElementById('resumenCoberturas').style.display = 'block';
 
 const miNumero = "59170074407"; // Tu número de Bolivia con código de país
 
-const texto = `Hola! Envié una solicitud de cotización. Tipo de Bien: ${formData.get('tipo_bien')}, Detalle: ${formData.get('detalle')}, Valor comercial: ${formData.get('valor comercial')}, Nombre: ${formData.get('nombre')}. Quedo atento a la cotización oficial.`;
+const texto = `Hola! Envié una solicitud de cotización. Tipo de Bien: ${formData.get('tipo_bien')}, Detalle: ${formData.get('detalle')}, Valor comercial: ${formData.get('detalle')}, Nombre: ${formData.get('nombre')}. Quedo atento a la cotización oficial.`;
 
 const urlWa = `https://wa.me/${miNumero}?text=${encodeURIComponent(texto)}`;
 
