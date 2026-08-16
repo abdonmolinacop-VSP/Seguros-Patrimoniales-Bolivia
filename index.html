@@ -20,8 +20,8 @@ HTML
 <div class="card">
   <h2>Cotiza tu Seguro Patrimonial</h2>
   
-  <!-- Recuerda cambiar la URL de acción si usas Formspree o Google Apps Script -->
-  <form id="insuranceForm" action="https://docs.google.com/spreadsheets/d/1KoXgfRpxsjutvERSWXxwgGlyEFFjAooxVrmw5MVzrvg/edit?gid=1782054455#gid=1782054455" method="POST">
+  <!-- Ya no necesitamos la dirección action aquí, el JavaScript se encarga -->
+  <form id="insuranceForm">
     
     <label>Tipo de Bien:</label>
     <select name="tipo_bien" id="tipo_bien" required>
@@ -79,7 +79,7 @@ const form = document.getElementById('insuranceForm');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
-  // 1. Capturar los valores directamente de los elementos por su ID (Evita el error 'null')
+  // 1. Capturar los valores de los campos por su ID
   const tipoBien = document.getElementById('tipo_bien').value;
   const detalle = document.getElementById('detalle').value;
   const valorComercial = document.getElementById('valor_comercial').value;
@@ -88,18 +88,23 @@ form.addEventListener('submit', function(e) {
   const nombre = document.getElementById('nombre').value;
   const telefono = document.getElementById('telefono').value;
 
-  // 2. Enviar datos de forma asíncrona al servicio configurado en el 'action'
+  // 2. Preparar los datos para enviarlos a Google Sheets
   const formData = new FormData(form);
-  fetch(form.action, {
+  
+  // 👉 PEGA AQUÍ ABAJO TU URL DE GOOGLE APPS SCRIPT ENTRE LAS COMILLAS
+  const urlGoogle = "https://script.google.com/macros/s/AKfycbxHLt3ZplmyZy0jmglTygl9l7YyFVblfwmgmayXE79iNJCKvRaQwN2SRjHRBkFRpe1d/exec"; 
+
+  // Enviar datos al Excel de forma silenciosa
+  fetch(urlGoogle, {
     method: 'POST',
     body: formData,
-    headers: { 'Accept': 'application/json' }
-  }).catch(error => console.log('Error al enviar al servidor:', error));
+    mode: 'no-cors'
+  }).catch(error => console.log('Error al guardar en Google Sheets:', error));
 
-  // 3. Mostrar el resumen visual en pantalla
+  // 3. Mostrar el mensaje de éxito en pantalla
   document.getElementById('resumenCoberturas').style.display = 'block';
 
-  // 4. Generar el mensaje exacto para WhatsApp con todos los datos correctos
+  // 4. Crear el mensaje para WhatsApp con todos los datos
   const miNumero = "59170074407"; 
   const texto = `Hola! Envié una solicitud de cotización.\n` +
                 `- Tipo de Bien: ${tipoBien}\n` +
@@ -113,7 +118,7 @@ form.addEventListener('submit', function(e) {
 
   const urlWa = `https://wa.me/${miNumero}?text=` + encodeURIComponent(texto);
 
-  // 5. Redirigir a WhatsApp automáticamente en 3 segundos
+  // 5. Abrir WhatsApp automáticamente después de 3 segundos
   setTimeout(() => { 
     window.location.href = urlWa; 
   }, 3000);
