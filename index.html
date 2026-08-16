@@ -1,174 +1,124 @@
 HTML
-
-
-
-<!DOCTYPE html><html lang="es"><head>
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Cotizador de Seguros Bolivia</title>
-
 <style>
-
-body { font-family: Arial, sans-serif; background: #f4f7f6; margin: 0; padding: 15px; }
-
-.card { background: white; padding: 20px; border-radius: 12px; max-width: 450px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-
-h2 { color: #1a365d; text-align: center; }
-
-label { font-weight: bold; display: block; margin-top: 10px; }
-
-input, select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
-
-button { background: #25D366; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-size: 16px; font-weight: bold; margin-top: 15px; cursor: pointer; }
-
-.resumen { display: none; background: #eef9f2; padding: 15px; border-radius: 8px; border-left: 5px solid #25D366; margin-top: 15px; }
-
-</style></head><body><div class="card">
-
-<h2>Cotiza tu Seguro Patrimonial</h2>
-
-<form id="insuranceForm" action="https://docs.google.com/spreadsheets/d/1KoXgfRpxsjutvERSWXxwgGlyEFFjAooxVrmw5MVzrvg/edit?gid=1782054455#gid=1782054455" method="POST">
-
-<label>Tipo de Bien:</label>
-
-<select name="tipo_bien" id="tipo_bien" required>
-
-<option value="Vehículo">Vehículo / Automotor</option>
-
-<option value="Inmueble">Inmueble / Hogar</option>
-
-<option value="Pyme">Empresa / Pyme</option>
-
-</select>
-
-
-
-<label>Marca / Modelo:</label>
-
-<input type="text" name="detalle" id="detalle" placeholder="Ej. Suzuki, Swift 2022" required>
-
-<label>Valor comercial (BS):</label>
-
-<input type="text" name="valor comercial" id="valor_comercial" placeholder="Ej. BS.- 147,000" required>
-
-
-<label>Tipo de uso:</label>
-
-<select name="tipo_uso" id="tipo_uso" required>
-
-<option value="Tipo"> Particular</option>
-
-<option value="Tipo"> Público</option>
-
-
-
-</select>
-
-
-<label>Ciudad:</label>
-
-<select name="ciudad" id="ciudad" required>
-
-<option value="Santa Cruz">Santa Cruz</option>
-
-<option value="La Paz">La Paz</option>
-
-<option value="Cochabamba">Cochabamba</option>
-
-<option value="Otra">Otra ciudad de Bolivia</option>
-
-</select>
-
-
-
-<label>Tu Nombre Completo:</label>
-
-<input type="text" name="nombre" id="nombre" required>
-
-
-
-<label>Tu Teléfono / WhatsApp:</label>
-
-<input type="tel" name="telefono" id="telefono" placeholder="7XXXXXXX" required>
-
-
-
-<button type="submit">Solicitar Cotización</button>
-
-</form>
-
-
-
-<div id="resumenCoberturas" class="resumen">
-
-<h3>¡Solicitud Enviada!</h3>
-
-<p>Estamos calculando tu tasa personalizada. Mientras te respondemos por WhatsApp, esto es lo que incluye tu seguro:</p>
-
-<ul>
-
-<li><strong>Responsabilidad Civil:</strong> Hasta Bs. 210.000.</li>
-<li><strong>Accidentes Personales:</strong> Hasta Bs. 70.000 (Muerte/Invalidez).</li>
-<li><strong>Beneficio Único:</strong> Si tu vehículo es del año, en caso de pérdida total, te entregamos uno 0km.</li>
-<li><strong>Asistencia:</strong> Incluye grúa, auxilio mecánico y cobertura en países limítrofes.</li>
-
-<li><strong>Protección Total:</strong> Daños por accidentes, volcamiento o robos.</li>
-
-<li><strong>Responsabilidad Civil:</strong> Cobertura por daños a terceros.</li>
-
-<li><strong>Asistencia 24/7:</strong> Auxilio mecánico y grúa en toda Bolivia.</li>
-
-</ul>
-
-<p><i>Redirigiendo a WhatsApp para finalizar tu atención...</i></p>
-
-</div></div><script>
-
+  body { font-family: Arial, sans-serif; background: #f4f7f6; margin: 0; padding: 15px; }
+  .card { background: white; padding: 20px; border-radius: 12px; max-width: 450px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+  h2 { color: #1a365d; text-align: center; }
+  label { font-weight: bold; display: block; margin-top: 10px; }
+  input, select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+  button { background: #25D366; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-size: 16px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+  .resumen { display: none; background: #eef9f2; padding: 15px; border-radius: 8px; border-left: 5px solid #25D366; margin-top: 15px; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Cotiza tu Seguro Patrimonial</h2>
+  
+  <!-- Recuerda cambiar la URL de acción si usas Formspree o Google Apps Script -->
+  <form id="insuranceForm" action="https://docs.google.com/spreadsheets/d/1KoXgfRpxsjutvERSWXxwgGlyEFFjAooxVrmw5MVzrvg/edit?gid=1782054455#gid=1782054455" method="POST">
+    
+    <label>Tipo de Bien:</label>
+    <select name="tipo_bien" id="tipo_bien" required>
+      <option value="Vehículo">Vehículo / Automotor</option>
+      <option value="Inmueble">Inmueble / Hogar</option>
+      <option value="Pyme">Empresa / Pyme</option>
+    </select>
+
+    <label>Marca / Modelo:</label>
+    <input type="text" name="detalle" id="detalle" placeholder="Ej. Suzuki, Swift 2022" required>
+
+    <!-- Importante: el name y el id deben coincidir -->
+    <label>Valor comercial (BS):</label>
+    <input type="text" name="valor_comercial" id="valor_comercial" placeholder="Ej. Bs.- 147,000" required>
+
+    <label>Tipo de uso:</label>
+    <select name="tipo_uso" id="tipo_uso" required>
+      <option value="Particular">Particular</option>
+      <option value="Público">Público</option>
+    </select>
+
+    <label>Ciudad:</label>
+    <select name="ciudad" id="ciudad" required>
+      <option value="Santa Cruz">Santa Cruz</option>
+      <option value="La Paz">La Paz</option>
+      <option value="Cochabamba">Cochabamba</option>
+      <option value="Otra">Otra ciudad de Bolivia</option>
+    </select>
+
+    <label>Tu Nombre Completo:</label>
+    <input type="text" name="nombre" id="nombre" required>
+
+    <label>Tu Teléfono / WhatsApp:</label>
+    <input type="tel" name="telefono" id="telefono" placeholder="7XXXXXXX" required>
+
+    <button type="submit">Solicitar Cotización</button>
+  </form>
+
+  <div id="resumenCoberturas" class="resumen">
+    <h3>¡Solicitud Enviada!</h3>
+    <p>Estamos calculando tu tasa personalizada. Mientras te respondemos por WhatsApp, esto es lo que incluye tu seguro:</p>
+    <ul>
+      <li><strong>Responsabilidad Civil:</strong> Hasta Bs. 210.000.</li>
+      <li><strong>Accidentes Personales:</strong> Hasta Bs. 70.000 (Muerte/Invalidez).</li>
+      <li><strong>Beneficio Único:</strong> Si tu vehículo es del año, en caso de pérdida total, te entregamos uno 0km.</li>
+      <li><strong>Asistencia 24/7:</strong> Grúa, auxilio mecánico y cobertura en toda Bolivia.</li>
+    </ul>
+    <p><em>Redirigiendo a WhatsApp para finalizar tu atención...</em></p>
+  </div>
+</div>
+
+<script>
 const form = document.getElementById('insuranceForm');
 
-form.addEventListener('submit', async function(e) {
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
 
-e.preventDefault();
+  // 1. Capturar los valores directamente de los elementos por su ID (Evita el error 'null')
+  const tipoBien = document.getElementById('tipo_bien').value;
+  const detalle = document.getElementById('detalle').value;
+  const valorComercial = document.getElementById('valor_comercial').value;
+  const tipoUso = document.getElementById('tipo_uso').value;
+  const ciudad = document.getElementById('ciudad').value;
+  const nombre = document.getElementById('nombre').value;
+  const telefono = document.getElementById('telefono').value;
 
-const formData = new FormData(form);
+  // 2. Enviar datos de forma asíncrona al servicio configurado en el 'action'
+  const formData = new FormData(form);
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).catch(error => console.log('Error al enviar al servidor:', error));
 
+  // 3. Mostrar el resumen visual en pantalla
+  document.getElementById('resumenCoberturas').style.display = 'block';
 
+  // 4. Generar el mensaje exacto para WhatsApp con todos los datos correctos
+  const miNumero = "59170074407"; 
+  const texto = `Hola! Envié una solicitud de cotización.\n` +
+                `- Tipo de Bien: ${tipoBien}\n` +
+                `- Detalle: ${detalle}\n` +
+                `- Valor comercial: ${valorComercial}\n` +
+                `- Tipo de uso: ${tipoUso}\n` +
+                `- Ciudad: ${ciudad}\n` +
+                `- Nombre: ${nombre}\n` +
+                `- Teléfono: ${telefono}\n\n` +
+                `Quedo atento a la cotización.`;
 
-// Envío de datos a Formspree / Google Sheets
+  const urlWa = `https://wa.me/${miNumero}?text=` + encodeURIComponent(texto);
 
-fetch(form.action, {
-
-method: 'POST',
-
-body: formData,
-
-headers: { 'Accept': 'application/json' }
-
+  // 5. Redirigir a WhatsApp automáticamente en 3 segundos
+  setTimeout(() => { 
+    window.location.href = urlWa; 
+  }, 3000);
 });
+</script>
 
-
-
-// Mostrar el resumen pedagógico en pantalla
-
-document.getElementById('resumenCoberturas').style.display = 'block';
-
-
-
-// Generar enlace directo a tu WhatsApp
-
-const miNumero = "59170074407"; // Tu número de Bolivia con código de país
-
-const texto = `Hola! Envié una solicitud de cotización. Tipo de Bien: ${formData.get('tipo_bien')}, Detalle: ${formData.get('detalle')}, valor: ${formData.get('valor_comercial')}, Nombre: ${formData.get('nombre')}. Quedo atento a la cotización.`;
-
-const urlWa = `https://wa.me/${miNumero}?text=${encodeURIComponent(texto)}`;
-
-
-
-// Redirigir a WhatsApp en 3 segundos
-
-setTimeout(() => { window.location.href = urlWa; }, 3000);
-
-});</script></body></html>
+</body>
+</html>
